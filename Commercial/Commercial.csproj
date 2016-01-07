@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E9430309-C870-4569-8595-C8886E046E85}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Commercial</RootNamespace>
+    <AssemblyName>Commercial</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>banque.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Presentation\FajouteArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FajouteArticle.Designer.cs">
+      <DependentUpon>FajouteArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FajouteCdes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FajouteCdes.Designer.cs">
+      <DependentUpon>FajouteCdes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FDetailsCde.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FDetailsCde.Designer.cs">
+      <DependentUpon>FDetailsCde.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FListeArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FListeArticles.Designer.cs">
+      <DependentUpon>FListeArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FListeCdes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FListeCdes.Designer.cs">
+      <DependentUpon>FListeCdes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Fprix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Fprix.Designer.cs">
+      <DependentUpon>Fprix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Fvendeur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Fvendeur.Designer.cs">
+      <DependentUpon>Fvendeur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Fclient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Fclient.Designer.cs">
+      <DependentUpon>Fclient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Faccueil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Faccueil.Designer.cs">
+      <DependentUpon>Faccueil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\FajouteArticle.resx">
+      <DependentUpon>FajouteArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FajouteCdes.resx">
+      <DependentUpon>FajouteCdes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FDetailsCde.resx">
+      <DependentUpon>FDetailsCde.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FListeArticles.resx">
+      <DependentUpon>FListeArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FListeCdes.resx">
+      <DependentUpon>FListeCdes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Fprix.resx">
+      <DependentUpon>Fprix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Fvendeur.resx">
+      <DependentUpon>Fvendeur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Faccueil.resx">
+      <DependentUpon>Faccueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Fclient.resx">
+      <DependentUpon>Fclient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Metier\Metier.csproj">
+      <Project>{20110010-4519-4DDF-8B80-F85FBD541F5D}</Project>
+      <Name>Metier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistance\Persistance.csproj">
+      <Project>{3c893133-c859-4a92-91ce-40b0bf670035}</Project>
+      <Name>Persistance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilitaires\Utilitaires.csproj">
+      <Project>{CE037871-CB3C-4B48-9769-3787D05DB578}</Project>
+      <Name>Utilitaires</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="banque.ico" />
+    <Content Include="banque.png" />
+    <Content Include="banquered.png" />
+    <Content Include="copy.png" />
+    <None Include="personnage2.png" />
+    <None Include="prix.png" />
+    <None Include="tableau.png" />
+    <None Include="panier.png" />
+    <None Include="personnage.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
