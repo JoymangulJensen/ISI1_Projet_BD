@@ -73,13 +73,18 @@ namespace Metier
         /// <param name="pourcentage"></param>
         public static void ModifierPrix(String pourcentage)
         {
+            ModifierPrixHelper(pourcentage, true);
+        }
+
+        private static bool ModifierPrixHelper(String pourcentage, bool procedure_ok)
+        {
             DataTable dt;
             sErreurs err = new sErreurs("", "");
 
             String mysql;
             try
             {
-                
+
                 /*
                  * Code SQL de création de la procédure stockée :
                  
@@ -90,19 +95,32 @@ namespace Metier
                  END
                  
                 */
-
-                // appel de la procédure stockée
-                mysql = "CALL modifier_prix(" + pourcentage + ");";
-
-                // mais si la procédure n'existe pas ...
-                // mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
                 
+                if (procedure_ok)
+                {
+                    // appel de la procédure stockée
+                    mysql = "CALL modifier_prix(" + pourcentage + ");";
+                }
+                else
+                {
+                    // mais si la procédure n'existe pas ...
+                    mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+                }
+
                 dt = DbInterface.Lecture(mysql, err);
             }
             catch (MonException erreur)
             {
+                if (procedure_ok)
+                {
+                    return ModifierPrixHelper(pourcentage, false); // On réessaie sans la procédure stockée
+                }
+                // Une erreur ne concernant pas la procedure stockée a été rencontrée
+                erreur.MsgUtilisateur += "Une erreur est intervenue lors de la mise à jour des prix des articles ";
                 throw erreur;
             }
+
+            return true;
         }
 
         /// <summary>
@@ -110,6 +128,16 @@ namespace Metier
         /// </summary>
         /// <param name="pourcentage"></param>
         public static void AugmenterPrix(String pourcentage)
+        {
+            AugmenterPrixHelper(pourcentage, true);
+        }
+
+        /// <summary>
+        /// Utilitaire permettant d'augmenter ou de diminuer tous les prix des articles
+        /// </summary>
+        /// <param name="pourcentage"></param>
+        /// <param name="procedure_ok">Indique si une erreur est intervenue ou non lors de l'execution de la requète</param>
+        private static bool AugmenterPrixHelper(String pourcentage, bool procedure_ok)
         {
             DataTable dt;
             sErreurs err = new sErreurs("", "");
@@ -145,18 +173,30 @@ namespace Metier
                  
                 */
 
-                // appel de la procédure stockée
-                mysql = "CALL articles_augm_prix(1 + " + pourcentage + " / 100 );";
-
-                // mais si la procédure n'existe pas ...
-                // mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
-
+                if (procedure_ok)
+                {
+                    // appel de la procédure stockée
+                    mysql = "CALL articles_augm_prix(1 + " + pourcentage + " / 100 );";
+                }
+                else
+                {
+                    // mais si la procédure n'existe pas 
+                    mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+                }
+                
                 dt = DbInterface.Lecture(mysql, err);
             }
             catch (MonException erreur)
             {
+                if (procedure_ok)
+                {
+                    return AugmenterPrixHelper(pourcentage, false); // On réessaie sans la procédure stockée
+                }
+                // Une erreur ne concernant pas la procedure stockée a été rencontrée
+                erreur.MsgUtilisateur += "Une erreur est intervenue lors de la mise à jour des prix des articles ";
                 throw erreur;
             }
+            return true;
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace Commercial.Presentation
             }
             catch (MonException exception)
             {
-                MessageBox.Show(exception.MessageApplication(), exception.Message);
+                MessageBox.Show(exception.MsgUtilisateur + exception.MessageApplication(), exception.Message + " "  );
             }
             
         }
