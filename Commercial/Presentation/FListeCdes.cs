@@ -39,6 +39,8 @@ namespace Commercial.Presentation
             // Affiche l'entête du tableau
             tri = "NO_COMMAND";
             ordre = "ASC";
+            menu_asc.Checked = true;
+
             Numcheck.Checked = true;
             NumVencheck.Checked = true;
             NumClicheck.Checked = true;
@@ -267,12 +269,16 @@ namespace Commercial.Presentation
 
         private void menu_asc_Click(object sender, EventArgs e)
         {
+            menu_asc.Checked = true;
+            menu_desc.Checked = false;
             ordre = "ASC";
             this.AfficherListe();
         }
 
         private void menu_desc_Click(object sender, EventArgs e)
         {
+            menu_asc.Checked = false;
+                menu_desc.Checked = true;
             ordre = "DESC";
             this.AfficherListe();
         }
