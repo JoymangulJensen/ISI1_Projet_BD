@@ -72,7 +72,7 @@ namespace Commercial.Presentation
             {
                 tb_noart.Enabled = false;
                 lbl_titre.Text = "Modifier un article";
-                this.Text = "Modifier una article";
+                this.Text = "Modifier un article";
             }
             testSubmitPossible();
         }

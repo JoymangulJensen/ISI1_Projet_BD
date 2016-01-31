@@ -105,5 +105,64 @@ namespace Metier
                 throw erreur;
             }
         }
+
+        /// <summary>
+        /// Modifier les informations de la commande dans la base de données
+        /// </summary>
+        public void modifierCommande()
+        {
+            DataTable dt;
+            sErreurs err = new sErreurs("", "");
+
+            String mysql;
+            try
+            {
+                // actualiser les infoamtions dans la base
+                mysql = "UPDATE COMMANDES SET NO_VENDEUR = '";
+                mysql += this.Vendeur.NoVendeur;
+                mysql += "', NO_CLIENT = '";
+                mysql += this.Client.NoCl;
+                mysql += "', DATE_CDE = '";
+                mysql += this.dateCommande.ToString("yyyy-MM-dd");
+                 mysql += "', FACTURE = '";
+                mysql += this.facture;
+                mysql += "' WHERE NO_COMMAND = '" + this.noCommande + "';";
+                dt = DbInterface.Lecture(mysql, err);
+
+            }
+            catch (MonException erreur)
+            {
+                throw erreur;
+            }
+        }
+
+        public void ajouterCommande()
+        {
+            DataTable dt;
+            sErreurs err = new sErreurs("", "");
+
+            String mysql;
+            try
+            {
+                // enregistrer les détails de l'article
+                mysql = "INSERT INTO COMMANDES (NO_COMMAND, NO_CLIENT, NO_VENDEUR, FACTURE, DATE_CDE) VALUES ('";
+                mysql += this.noCommande;
+                mysql += "', '";
+                mysql += this.client.NoCl;
+                mysql += "', '";
+                mysql += this.vendeur.NoVendeur;
+                mysql += "', '";
+                mysql += this.facture;
+                mysql += "', '";
+                mysql += this.dateCommande.ToString("yyyy-MM-dd");
+                mysql += "');";
+                dt = DbInterface.Lecture(mysql, err);
+
+            }
+            catch (MonException erreur)
+            {
+                throw erreur;
+            }
+        }
     }
 }

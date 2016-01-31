@@ -27,7 +27,7 @@ namespace Commercial.Presentation
         /// Initialisation
         /// </summary>
         /// <param name="choix">Option pour l'initialisation : affichage d'un message ou ouverture d'une fenêtre d'ajout</param>
-
+        private List<Commande> mesCommandes;
 
         public FListeCdes()
         {
@@ -37,8 +37,7 @@ namespace Commercial.Presentation
             // Affiche l'entête du tableau
 
             Numcheck.Checked = true;
-AfficherListe();
-
+            AfficherListe();
         }
 
         /// <summary>
@@ -56,7 +55,6 @@ AfficherListe();
             lvcdes.Columns.Add("5", "Facture", 100, HorizontalAlignment.Left,0);
 
             Commande unecommande = new Commande();
-            List<Commande> mesCommandes;
             string numCde, numVend, NumCli, facture, datecde;
             ListViewItem lvitem_cde;
 
@@ -159,8 +157,22 @@ AfficherListe();
         /// <param name="e"></param>
         private void ajouterUneCommandeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FajouteCdes f = new FajouteCdes();
-            f.ShowDialog();
+            Commande cmd = new Commande();
+            FajouteCdes f = new FajouteCdes(cmd);
+            DialogResult res = f.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                try
+                {
+                    cmd.ajouterCommande();
+                    MessageBox.Show("Commande ajoutée avec succès.");
+                    AfficherListe();
+                }
+                catch (MonException excep)
+                {
+                    MessageBox.Show(excep.MessageSysteme(), "Erreur d'ajout");
+                }
+            }
         }
 
         private void lvcdes_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -207,6 +219,43 @@ AfficherListe();
                 FDetailsCde dt = new FDetailsCde(no_cmd);
                 DialogResult res = dt.ShowDialog();
             }
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lvcdes.SelectedIndices.Count; i++)
+            {
+                String no_cmd = lvcdes.Items[lvcdes.SelectedIndices[i]].Text;
+                Commande c = this.getCommandeByNum(no_cmd);
+                FajouteCdes f = new FajouteCdes(c, true);
+                DialogResult res = f.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    try
+                    {
+                        c.modifierCommande();
+                        MessageBox.Show("Modification de commande réussite ! ", "Commande modifiée avec succès !");
+                        AfficherListe();
+                    }
+                    catch (MonException excep)
+                    {
+                        MessageBox.Show(excep.MessageSysteme(), "Erreur de modification");
+                    }
+                }
+            }
+        }
+
+        private Commande getCommandeByNum(String no_cmd)
+        {
+            foreach (Commande c in mesCommandes)
+            {
+
+                if (no_cmd == c.NoCommande)
+                {
+                    return c;
+                }
+            }
+            throw new MonException("Commande introuvable", "Erreur pour trouver une commande", "Erreur");
         }
     }
 }

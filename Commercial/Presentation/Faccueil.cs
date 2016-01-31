@@ -217,8 +217,23 @@ namespace Commercial
         /// <param name="e"></param>
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FajouteCdes f = new FajouteCdes();
-            f.ShowDialog();
+            Commande cmd = new Commande();
+            FajouteCdes f = new FajouteCdes(cmd);
+            DialogResult res = f.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                try
+                {
+                    cmd.ajouterCommande();
+                    MessageBox.Show("Commande ajoutée avec succès.");
+                    FListeCdes fliste = new FListeCdes();
+                    fliste.ShowDialog();
+                }
+                catch (MonException excep)
+                {
+                    MessageBox.Show(excep.MessageSysteme(), "Erreur d'ajout");
+                }
+            }
         }
 
         private void listeArticlesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,6 +252,12 @@ namespace Commercial
                 FListeArticles f = new FListeArticles();
                 f.ShowDialog();
             }
+        }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FListeCdes f = new FListeCdes();
+            f.ShowDialog();
         }
     }
 }

@@ -134,6 +134,7 @@
             this.tb_nocmd.Name = "tb_nocmd";
             this.tb_nocmd.Size = new System.Drawing.Size(200, 20);
             this.tb_nocmd.TabIndex = 1;
+            this.tb_nocmd.TextChanged += new System.EventHandler(this.tb_nocmd_TextChanged);
             // 
             // dtp_date
             // 
@@ -149,6 +150,7 @@
             this.cb_novendeur.Name = "cb_novendeur";
             this.cb_novendeur.Size = new System.Drawing.Size(200, 21);
             this.cb_novendeur.TabIndex = 2;
+            this.cb_novendeur.SelectedIndexChanged += new System.EventHandler(this.cb_novendeur_SelectedIndexChanged);
             // 
             // cb_noclient
             // 
@@ -157,6 +159,7 @@
             this.cb_noclient.Name = "cb_noclient";
             this.cb_noclient.Size = new System.Drawing.Size(200, 21);
             this.cb_noclient.TabIndex = 3;
+            this.cb_noclient.SelectedIndexChanged += new System.EventHandler(this.cb_noclient_SelectedIndexChanged);
             // 
             // details_vendeur
             // 
