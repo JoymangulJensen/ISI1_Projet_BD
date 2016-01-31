@@ -226,5 +226,17 @@ namespace Commercial
             FListeArticles f = new FListeArticles();
             f.ShowDialog();
         }
+
+        private void augmenterLesPrixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // open fprix
+            Prix modifprix = new Prix();
+            if (modifprix.ShowDialog() == DialogResult.OK)
+            {
+                // Si le prix s'est bien modifié, on affiche les nouveaux prix avec la liste des articles
+                FListeArticles f = new FListeArticles();
+                f.ShowDialog();
+            }
+        }
     }
 }
