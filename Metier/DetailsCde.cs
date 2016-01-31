@@ -74,7 +74,6 @@ namespace Metier
             mysql += "FROM articles, detail_cde ";
             mysql += "WHERE detail_cde.NO_COMMAND = " + noCmd + " AND articles.NO_ARTICLE = detail_cde.NO_ARTICLE ";
             mysql += "ORDER BY NO_ARTICLE ASC";
-            Console.Write(mysql);
             try
             {
                 dt = DbInterface.Lecture(mysql, err);
@@ -98,6 +97,8 @@ namespace Metier
                 throw erreur;
             }
         }
+
+
 
 
     }

@@ -47,6 +47,7 @@ namespace Commercial.Presentation
             Datecheck.Checked = true;
             Facturecheck.Checked = true;
 AfficherListe();
+            TestAccesMenu();
         }
 
         /// <summary>
@@ -331,6 +332,41 @@ AfficherListe();
                 menu_desc.Checked = true;
             ordre = "DESC";
             this.AfficherListe();
+        }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int[] toDel = new int[lvcdes.SelectedIndices.Count];
+            int index = 0;
+            if(lvcdes.SelectedIndices.Count==0)
+            {
+                MessageBox.Show("Veuillez Selction une commande", "erreur");    
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("Confirmation de la supression des commande", "Suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (dr == DialogResult.Yes)
+                {
+                    Commande cmd = new Commande();
+
+                    foreach (ListViewItem i in lvcdes.SelectedItems)
+                    {
+                        toDel[index] = Convert.ToInt32(i.SubItems[0].Text);
+                        index++;
+                    }
+                    try
+                    {
+                        cmd.suppCmd(toDel);
+                        AfficherListe();
+                    }
+                    catch (MonException excep)
+                    {
+                        MessageBox.Show(excep.MessageSysteme(), "Erreur de modification");
+                    }
+                }
+
+            }
         }
     }
 }

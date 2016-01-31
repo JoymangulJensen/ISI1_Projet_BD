@@ -89,5 +89,26 @@ namespace Persistance
                 throw new MonException(uneException.Message, "Insertion", "SQL");
             }
         }
+
+        public void Suppression_Donnees(String requete)
+        {
+            MySqlConnection cnx = null;
+            try
+            {
+                // On ouvre une transaction 
+                cnx = Connexion.getInstance().getConnexion();
+                MySqlTransaction OleTrans = cnx.BeginTransaction();
+                MySqlCommand OleCmd = new MySqlCommand();
+                OleCmd = cnx.CreateCommand();
+                OleCmd.Transaction = OleTrans;
+                OleCmd.CommandText = requete;
+                OleCmd.ExecuteNonQuery();
+                OleTrans.Commit();
+            }
+            catch (MySqlException uneException)
+            {
+                throw new MonException(uneException.Message, "Suppression", "SQL");
+            }
+        }
     }
 }

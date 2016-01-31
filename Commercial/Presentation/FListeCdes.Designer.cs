@@ -179,6 +179,7 @@
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
             this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
+            this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
             // triToolStripMenuItem
             // 
@@ -200,60 +201,60 @@
             this.menu_tri_date,
             this.menu_tri_facture});
             this.menu_tri.Name = "menu_tri";
-            this.menu_tri.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri.Size = new System.Drawing.Size(135, 22);
             this.menu_tri.Text = "Champ";
             // 
             // menu_tri_no
             // 
             this.menu_tri_no.Name = "menu_tri_no";
-            this.menu_tri_no.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri_no.Size = new System.Drawing.Size(118, 22);
             this.menu_tri_no.Text = "Numéro";
             this.menu_tri_no.Click += new System.EventHandler(this.menu_tri_no_Click);
             // 
             // menu_tri_vendeur
             // 
             this.menu_tri_vendeur.Name = "menu_tri_vendeur";
-            this.menu_tri_vendeur.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri_vendeur.Size = new System.Drawing.Size(118, 22);
             this.menu_tri_vendeur.Text = "Vendeur";
             this.menu_tri_vendeur.Click += new System.EventHandler(this.menu_tri_vendeur_Click);
             // 
             // menu_tri_client
             // 
             this.menu_tri_client.Name = "menu_tri_client";
-            this.menu_tri_client.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri_client.Size = new System.Drawing.Size(118, 22);
             this.menu_tri_client.Text = "Client";
             this.menu_tri_client.Click += new System.EventHandler(this.menu_tri_client_Click);
             // 
             // menu_tri_date
             // 
             this.menu_tri_date.Name = "menu_tri_date";
-            this.menu_tri_date.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri_date.Size = new System.Drawing.Size(118, 22);
             this.menu_tri_date.Text = "Date";
             this.menu_tri_date.Click += new System.EventHandler(this.menu_tri_date_Click);
             // 
             // menu_tri_facture
             // 
             this.menu_tri_facture.Name = "menu_tri_facture";
-            this.menu_tri_facture.Size = new System.Drawing.Size(152, 22);
+            this.menu_tri_facture.Size = new System.Drawing.Size(118, 22);
             this.menu_tri_facture.Text = "Facture";
             this.menu_tri_facture.Click += new System.EventHandler(this.menu_tri_facture_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(132, 6);
             // 
             // menu_asc
             // 
             this.menu_asc.Name = "menu_asc";
-            this.menu_asc.Size = new System.Drawing.Size(152, 22);
+            this.menu_asc.Size = new System.Drawing.Size(135, 22);
             this.menu_asc.Text = "Croissant";
             this.menu_asc.Click += new System.EventHandler(this.menu_asc_Click);
             // 
             // menu_desc
             // 
             this.menu_desc.Name = "menu_desc";
-            this.menu_desc.Size = new System.Drawing.Size(152, 22);
+            this.menu_desc.Size = new System.Drawing.Size(135, 22);
             this.menu_desc.Text = "Décroissant";
             this.menu_desc.Click += new System.EventHandler(this.menu_desc_Click);
             // 

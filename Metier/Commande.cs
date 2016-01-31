@@ -194,5 +194,29 @@ namespace Metier
                 throw erreur;
             }
         }
+
+        public void suppCmd(int[] noCmd)
+        {
+            DataTable dt;
+
+            sErreurs err = new sErreurs("", "");
+
+            try
+            {
+                    for (int i= 0;i < noCmd.Length; i++)
+                    {
+                        String mysql1 = "DELETE FROM detail_cde WHERE NO_COMMAND = " + noCmd[i];
+                        dt = DbInterface.Lecture(mysql1, err);
+                        String mysql2 = "DELETE FROM commandes WHERE NO_COMMAND = " + noCmd[i];
+                        dt = DbInterface.Lecture(mysql2, err);
+
+                    }
+                
+            }
+            catch (MonException erreur)
+            {
+                throw erreur;
+            }
+        }
     }
 }
