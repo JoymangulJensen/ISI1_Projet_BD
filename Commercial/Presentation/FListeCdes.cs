@@ -35,15 +35,9 @@ namespace Commercial.Presentation
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             // Affiche l'entête du tableau
-            lvcdes.Items.Clear();
-            lvcdes.View = View.Details;
-            lvcdes.Columns.Add("Numéro", 100, HorizontalAlignment.Left);
-            lvcdes.Columns.Add("Numéro Vendeur", 100, HorizontalAlignment.Left);
-            lvcdes.Columns.Add("Numéro Client", 100, HorizontalAlignment.Left);
-            lvcdes.Columns.Add("Date Commande", 100, HorizontalAlignment.Left);
-            lvcdes.Columns.Add("Facture", 100, HorizontalAlignment.Left);
 
-            AfficherListe();
+            Numcheck.Checked = true;
+AfficherListe();
 
         }
 
@@ -52,19 +46,20 @@ namespace Commercial.Presentation
         /// </summary>
         private void AfficherListe()
         {
+            lvcdes.Columns.Clear();
+            lvcdes.Items.Clear();
+            lvcdes.View = View.Details;
+            lvcdes.Columns.Add("1","Numero", 100, HorizontalAlignment.Left,0);
+            lvcdes.Columns.Add("2", "Numéro Vendeur", 100, HorizontalAlignment.Left,0);
+            lvcdes.Columns.Add("3", "Numéro Client", 100, HorizontalAlignment.Left,0);
+            lvcdes.Columns.Add("4", "Date Commande", 100, HorizontalAlignment.Left,0);
+            lvcdes.Columns.Add("5", "Facture", 100, HorizontalAlignment.Left,0);
+
             Commande unecommande = new Commande();
             List<Commande> mesCommandes;
             string numCde, numVend, NumCli, facture, datecde;
             ListViewItem lvitem_cde;
 
-            //lvcdes.Items.Clear();
-            //lvcdes.Columns.Clear();
-            //lvcdes.View = View.Details;
-            //lvcdes.Columns.Add("1", "Numéro");
-            //lvcdes.Columns.Add("2", "Numéro Vendeur");
-            //lvcdes.Columns.Add("3", "Numéro Client");
-            //lvcdes.Columns.Add("4", "Date Commande");
-            //lvcdes.Columns.Add("5", "Facture");
             try
             {
                 mesCommandes = unecommande.getLesCommandes();
@@ -166,6 +161,52 @@ namespace Commercial.Presentation
         {
             FajouteCdes f = new FajouteCdes();
             f.ShowDialog();
+        }
+
+        private void lvcdes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            for(int i= 0;i<lvcdes.SelectedIndices.Count;i++)
+            {
+                String no_cmd = lvcdes.Items[lvcdes.SelectedIndices[i]].Text;
+                FDetailsCde dt = new FDetailsCde(no_cmd);
+                DialogResult res = dt.ShowDialog();
+            }
+           
+        }
+
+        private void NumClicheck_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.AfficherListe();
+        }
+
+        private void Numcheck_CheckedChanged(object sender, EventArgs e)
+        {
+            this.AfficherListe();  
+        }
+
+        private void NumVencheck_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.AfficherListe();
+        }
+
+        private void Datecheck_CheckedChanged(object sender, EventArgs e)
+        {
+            this.AfficherListe();
+        }
+
+        private void Facturecheck_CheckedChanged(object sender, EventArgs e)
+        {
+            this.AfficherListe();
+        }
+
+        private void détailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lvcdes.SelectedIndices.Count; i++)
+            {
+                String no_cmd = lvcdes.Items[lvcdes.SelectedIndices[i]].Text;
+                FDetailsCde dt = new FDetailsCde(no_cmd);
+                DialogResult res = dt.ShowDialog();
+            }
         }
     }
 }
