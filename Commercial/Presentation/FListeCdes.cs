@@ -22,6 +22,8 @@ namespace Commercial.Presentation
     public partial class FListeCdes : Form
     {
 
+        private string tri;
+        private string ordre;
 
         /// <summary>
         /// Initialisation
@@ -35,9 +37,16 @@ namespace Commercial.Presentation
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             // Affiche l'entête du tableau
+            tri = "NO_COMMAND";
+            ordre = "ASC";
+            menu_asc.Checked = true;
 
             Numcheck.Checked = true;
-            AfficherListe();
+            NumVencheck.Checked = true;
+            NumClicheck.Checked = true;
+            Datecheck.Checked = true;
+            Facturecheck.Checked = true;
+AfficherListe();
         }
 
         /// <summary>
@@ -60,7 +69,7 @@ namespace Commercial.Presentation
 
             try
             {
-                mesCommandes = unecommande.getLesCommandes();
+                mesCommandes = unecommande.getLesCommandes(this.tri, this.ordre);
 
                 foreach (Commande c in mesCommandes)
                 {
@@ -189,26 +198,46 @@ namespace Commercial.Presentation
         private void NumClicheck_CheckStateChanged(object sender, EventArgs e)
         {
             this.AfficherListe();
+            if (!this.NumClicheck.Checked)
+                menu_tri_client.Enabled = false;
+            else
+                menu_tri_client.Enabled = true;
         }
 
         private void Numcheck_CheckedChanged(object sender, EventArgs e)
         {
             this.AfficherListe();  
+            if (!this.Numcheck.Checked)
+                menu_tri_no.Enabled = false;
+            else
+                menu_tri_no.Enabled = true;
         }
 
         private void NumVencheck_CheckStateChanged(object sender, EventArgs e)
         {
             this.AfficherListe();
+            if (!this.NumVencheck.Checked)
+                menu_tri_vendeur.Enabled = false;
+            else
+                menu_tri_vendeur.Enabled = true;
         }
 
         private void Datecheck_CheckedChanged(object sender, EventArgs e)
         {
             this.AfficherListe();
+            if (!this.Datecheck.Checked)
+                menu_tri_date.Enabled = false;
+            else
+                menu_tri_date.Enabled = true;
         }
 
         private void Facturecheck_CheckedChanged(object sender, EventArgs e)
         {
             this.AfficherListe();
+            if (!this.Facturecheck.Checked)
+                menu_tri_facture.Enabled = false;
+            else
+                menu_tri_facture.Enabled = true;
         }
 
         private void détailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -256,6 +285,52 @@ namespace Commercial.Presentation
                 }
             }
             throw new MonException("Commande introuvable", "Erreur pour trouver une commande", "Erreur");
+        }
+
+        private void menu_tri_no_Click(object sender, EventArgs e)
+        {
+            tri = "NO_COMMAND";
+            this.AfficherListe();
+        }
+
+        private void menu_tri_vendeur_Click(object sender, EventArgs e)
+        {
+            tri = "NO_VENDEUR";
+            this.AfficherListe();
+        }
+
+        private void menu_tri_client_Click(object sender, EventArgs e)
+        {
+            tri = "NO_CLIENT";
+            this.AfficherListe();
+        }
+
+        private void menu_tri_date_Click(object sender, EventArgs e)
+        {
+            tri = "DATE_CDE";
+            this.AfficherListe();
+        }
+
+        private void menu_tri_facture_Click(object sender, EventArgs e)
+        {
+            tri = "FACTURE";
+            this.AfficherListe();
+        }
+
+        private void menu_asc_Click(object sender, EventArgs e)
+        {
+            menu_asc.Checked = true;
+            menu_desc.Checked = false;
+            ordre = "ASC";
+            this.AfficherListe();
+        }
+
+        private void menu_desc_Click(object sender, EventArgs e)
+        {
+            menu_asc.Checked = false;
+                menu_desc.Checked = true;
+            ordre = "DESC";
+            this.AfficherListe();
         }
     }
 }
