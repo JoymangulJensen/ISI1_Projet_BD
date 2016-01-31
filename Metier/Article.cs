@@ -95,7 +95,7 @@ namespace Metier
                 mysql = "CALL modifier_prix(" + pourcentage + ");";
 
                 // mais si la procédure n'existe pas ...
-                mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+                // mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
                 
                 dt = DbInterface.Lecture(mysql, err);
             }
