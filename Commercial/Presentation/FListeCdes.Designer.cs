@@ -64,6 +64,7 @@
             this.lvcdes.TabIndex = 0;
             this.lvcdes.UseCompatibleStateImageBehavior = false;
             this.lvcdes.SelectedIndexChanged += new System.EventHandler(this.lvcdes_SelectedIndexChanged);
+            this.lvcdes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvcdes_MouseDoubleClick);
             // 
             // Numcheck
             // 
@@ -74,6 +75,7 @@
             this.Numcheck.TabIndex = 2;
             this.Numcheck.Text = "Numéro";
             this.Numcheck.UseVisualStyleBackColor = true;
+            this.Numcheck.CheckedChanged += new System.EventHandler(this.Numcheck_CheckedChanged);
             // 
             // NumVencheck
             // 
@@ -84,6 +86,7 @@
             this.NumVencheck.TabIndex = 3;
             this.NumVencheck.Text = "Numéro vendeur";
             this.NumVencheck.UseVisualStyleBackColor = true;
+            this.NumVencheck.CheckStateChanged += new System.EventHandler(this.NumVencheck_CheckStateChanged);
             // 
             // NumClicheck
             // 
@@ -94,6 +97,7 @@
             this.NumClicheck.TabIndex = 4;
             this.NumClicheck.Text = "Numéro client";
             this.NumClicheck.UseVisualStyleBackColor = true;
+            this.NumClicheck.CheckStateChanged += new System.EventHandler(this.NumClicheck_CheckStateChanged);
             // 
             // label1
             // 
@@ -113,6 +117,7 @@
             this.Datecheck.TabIndex = 6;
             this.Datecheck.Text = "Date commande";
             this.Datecheck.UseVisualStyleBackColor = true;
+            this.Datecheck.CheckedChanged += new System.EventHandler(this.Datecheck_CheckedChanged);
             // 
             // Facturecheck
             // 
@@ -123,6 +128,7 @@
             this.Facturecheck.TabIndex = 7;
             this.Facturecheck.Text = "Facture";
             this.Facturecheck.UseVisualStyleBackColor = true;
+            this.Facturecheck.CheckedChanged += new System.EventHandler(this.Facturecheck_CheckedChanged);
             // 
             // menuStrip1
             // 
@@ -157,19 +163,20 @@
             // détailsToolStripMenuItem
             // 
             this.détailsToolStripMenuItem.Name = "détailsToolStripMenuItem";
-            this.détailsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.détailsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.détailsToolStripMenuItem.Text = "Détails";
+            this.détailsToolStripMenuItem.Click += new System.EventHandler(this.détailsToolStripMenuItem_Click);
             // 
             // modifierToolStripMenuItem
             // 
             this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
-            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modifierToolStripMenuItem.Text = "Modifier";
             // 
             // supprimerToolStripMenuItem
             // 
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
             // 
             // triToolStripMenuItem
