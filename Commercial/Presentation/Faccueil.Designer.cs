@@ -164,14 +164,14 @@
             // ajouterToolStripMenuItem
             // 
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.ajouterToolStripMenuItem.Text = "Ajouter";
             this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Click);
             // 
             // supprimerToolStripMenuItem
             // 
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
             // 
             // toolStripSeparator3
@@ -185,6 +185,7 @@
             this.augmenterLesPrixToolStripMenuItem.Name = "augmenterLesPrixToolStripMenuItem";
             this.augmenterLesPrixToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.augmenterLesPrixToolStripMenuItem.Text = "Augmenter/diminuer les prix";
+            this.augmenterLesPrixToolStripMenuItem.Click += new System.EventHandler(this.augmenterLesPrixToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 

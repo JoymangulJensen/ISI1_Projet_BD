@@ -73,13 +73,18 @@ namespace Metier
         /// <param name="pourcentage"></param>
         public static void ModifierPrix(String pourcentage)
         {
+            ModifierPrixHelper(pourcentage, true);
+        }
+
+        private static bool ModifierPrixHelper(String pourcentage, bool procedure_ok)
+        {
             DataTable dt;
             sErreurs err = new sErreurs("", "");
 
             String mysql;
             try
             {
-                
+
                 /*
                  * Code SQL de création de la procédure stockée :
                  
@@ -90,19 +95,108 @@ namespace Metier
                  END
                  
                 */
+                
+                if (procedure_ok)
+                {
+                    // appel de la procédure stockée
+                    mysql = "CALL modifier_prix(" + pourcentage + ");";
+                }
+                else
+                {
+                    // mais si la procédure n'existe pas ...
+                    mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+                }
 
-                // appel de la procédure stockée
-                mysql = "CALL modifier_prix(" + pourcentage + ");";
+                dt = DbInterface.Lecture(mysql, err);
+            }
+            catch (MonException erreur)
+            {
+                if (procedure_ok)
+                {
+                    return ModifierPrixHelper(pourcentage, false); // On réessaie sans la procédure stockée
+                }
+                // Une erreur ne concernant pas la procedure stockée a été rencontrée
+                erreur.MsgUtilisateur += "Une erreur est intervenue lors de la mise à jour des prix des articles ";
+                throw erreur;
+            }
 
-                // mais si la procédure n'existe pas ...
-                // mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+            return true;
+        }
+
+        /// <summary>
+        /// Augmenter ou diminuer tous les prix en appelant la procédure stockée
+        /// </summary>
+        /// <param name="pourcentage"></param>
+        public static void AugmenterPrix(String pourcentage)
+        {
+            AugmenterPrixHelper(pourcentage, true);
+        }
+
+        /// <summary>
+        /// Utilitaire permettant d'augmenter ou de diminuer tous les prix des articles
+        /// </summary>
+        /// <param name="pourcentage"></param>
+        /// <param name="procedure_ok">Indique si une erreur est intervenue ou non lors de l'execution de la requète</param>
+        private static bool AugmenterPrixHelper(String pourcentage, bool procedure_ok)
+        {
+            DataTable dt;
+            sErreurs err = new sErreurs("", "");
+
+            String mysql;
+            try
+            {
+
+                /*
+                 * Code SQL de création de la procédure stockée :
+                 
+                 CREATE DEFINER=`root`@`localhost` PROCEDURE articles_augm_prix(IN augmente DOUBLE)
+                BEGIN
+	                DECLARE done INT DEFAULT 0; #Permet de controler si on est arrivé à la fin du curseur
+                        DECLARE var_no CHAR(6);
+                        DECLARE var_prix DECIMAL(8,2);
+                        DECLARE curseur1 CURSOR FOR SELECT NO_ARTICLE, PRIX_ART FROM ARTICLES;
+	                DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+                        OPEN curseur1; # ouverture du curseur1
+                        REPEAT
+                                FETCH curseur1 INTO var_no, var_prix;
+                
+                                IF done = 0 THEN
+                	                SET var_prix:= var_prix * augmente;
+                                        UPDATE ARTICLES SET PRIX_ART = var_prix WHERE NO_ARTICLE = var_no;
+                                END IF;
+                        UNTIL done
+                        END REPEAT;
+ 
+                        CLOSE curseur1; # fermeture du curseur1
+                END
+
+                 
+                */
+
+                if (procedure_ok)
+                {
+                    // appel de la procédure stockée
+                    mysql = "CALL articles_augm_prix(1 + " + pourcentage + " / 100 );";
+                }
+                else
+                {
+                    // mais si la procédure n'existe pas 
+                    mysql = "UPDATE articles SET prix_art = prix_art * ( 1 + "+pourcentage+" /100 );";
+                }
                 
                 dt = DbInterface.Lecture(mysql, err);
             }
             catch (MonException erreur)
             {
+                if (procedure_ok)
+                {
+                    return AugmenterPrixHelper(pourcentage, false); // On réessaie sans la procédure stockée
+                }
+                // Une erreur ne concernant pas la procedure stockée a été rencontrée
+                erreur.MsgUtilisateur += "Une erreur est intervenue lors de la mise à jour des prix des articles ";
                 throw erreur;
             }
+            return true;
         }
 
         /// <summary>

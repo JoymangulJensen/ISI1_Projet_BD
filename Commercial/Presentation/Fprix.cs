@@ -47,12 +47,15 @@ namespace Commercial.Presentation
             envoi += tb_pourcentageAuto.Value.ToString();
             try
             {
-                Article.ModifierPrix(envoi);
+                // Article.ModifierPrix(envoi);
+
+                Article.AugmenterPrix(envoi);
+
                 MessageBox.Show("Opération effectuée avec succès !", "Ok");
             }
             catch (MonException exception)
             {
-                MessageBox.Show(exception.MessageApplication(), exception.Message);
+                MessageBox.Show(exception.MsgUtilisateur + exception.MessageApplication(), exception.Message + " "  );
             }
             
         }
