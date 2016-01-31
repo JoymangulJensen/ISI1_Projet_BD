@@ -87,7 +87,7 @@ namespace Commercial.Presentation
                 if (!NumClicheck.Checked) lvcdes.Columns.RemoveByKey("3");
                 if (!Datecheck.Checked) lvcdes.Columns.RemoveByKey("4");
                 if (!Facturecheck.Checked) lvcdes.Columns.RemoveByKey("5");
-
+                lvcdes.FullRowSelect = true;
                 lvcdes.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (MonException erreur)

@@ -30,6 +30,10 @@ namespace Commercial.Presentation
            
         }
 
+        public FDetailsCde(Commande c)
+        {
+            InitializeComponent();
+        }
         
 
        
